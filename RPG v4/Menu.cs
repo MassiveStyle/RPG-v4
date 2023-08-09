@@ -10,7 +10,7 @@ namespace RPG_v4
     {
         private Battle battle;
         private StatScreen statScreen;
-        string menuChoice = "";
+        string menuChoice = string.Empty;
 
         public Menu(Battle battle, StatScreen statScreen) 
         {
@@ -54,7 +54,7 @@ namespace RPG_v4
                         break;
                 }
             }
-            menuChoice = "";
+            menuChoice = string.Empty;
         }
     }
 }

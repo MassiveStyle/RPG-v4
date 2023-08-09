@@ -11,10 +11,13 @@ namespace RPG_v4
         bool turn { get; }
 
 
-        int hp { get; }
+        bool block { get; }
 
 
-        int hpMax { get; }
+        double hp { get; }
+
+
+        double hpMax { get; }
 
 
         int str { get; }
@@ -29,19 +32,19 @@ namespace RPG_v4
         int quick { get; }
 
 
-        int atk { get; }
+        double atk { get; }
 
 
-        int def { get; }
+        double def { get; }
 
 
         int level { get; }
 
 
-        int xpCurrent { get; }
+        double xpCurrent { get; }
 
 
-        int xpTreshold { get; }
+        double xpTreshold { get; }
 
 
         int skillPoints { get; }

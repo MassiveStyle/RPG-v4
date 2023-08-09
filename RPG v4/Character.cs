@@ -12,12 +12,16 @@ namespace RPG_v4
         public bool turn { get; set; }
 
 
+        public bool block { get; set; }
+
+
         public string name { get; set; }
 
-        public int hp { get; set; }
+
+        public double hp { get; set; }
 
 
-        public int hpMax { get; set; }
+        public double hpMax { get; set; }
 
 
         public int str { get; set; }
@@ -32,19 +36,19 @@ namespace RPG_v4
         public int quick { get; set; }
 
 
-        public int atk { get; set; }
+        public double atk { get; set; }
 
 
-        public int def { get; set; }
+        public double def { get; set; }
 
 
         public int level { get; set; }
 
 
-        public int xpCurrent { get; set; }
+        public double xpCurrent { get; set; }
 
 
-        public int xpTreshold { get; set; }
+        public double xpTreshold { get; set; }
 
 
         public int skillPoints { get; set; }
@@ -62,25 +66,25 @@ namespace RPG_v4
 
         public void SetName()
         {
-            do
+            while (string.IsNullOrEmpty(this.name))
             {
                 Console.WriteLine("Bitte wähle einen Namen: ");
                 string name = Console.ReadLine();
                 this.name = name;
 
-            } while (string.IsNullOrEmpty(this.name));
+            }
 
         }
         public void SetDefaultStats()
         {
-            hp = 100;
+            hp = Math.Round(100 + con * 0.25);
             hpMax = hp;
             str = 10;
             con = 10;
             dex = 10;
             quick = 10;
-            atk = 10;
-            def = 5;
+            atk = 10; 
+            def = Math.Round(5 + dex * 0.17);
             level = 0;
             xpCurrent = 0;
             xpTreshold = 200;

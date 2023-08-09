@@ -10,19 +10,31 @@ namespace RPG_v4
     {
         private Enemy enemy;
         private Character character;
+        private EnemyAttacks enemyAttacks;
 
-        public BattleTurnEnemy(Enemy enemy, Character character)
+        public BattleTurnEnemy(Enemy enemy, Character character, EnemyAttacks enemyAttacks)
         {
             this.enemy = enemy;
             this.character = character;
-
+            this.enemyAttacks = enemyAttacks;
         }
 
         public void TurnEnemy()
         {
-            Console.WriteLine($"{enemy.EnemyType} greift dich an und richtet {enemy.atk} Schaden an.");
-            character.hp = character.hp - enemy.atk;
-            Console.WriteLine($"Du hast noch {character.hp} Leben.");
+            if (!character.block)
+            {
+                enemyAttacks.Attacks();
+                Console.WriteLine($"{enemy.EnemyType} greift dich an und richtet {enemyAttacks.dmg} Schaden an.");
+                Console.WriteLine($"Du hast noch {character.hp} Leben.");
+
+            }
+            else
+            {
+                enemyAttacks.Attacks();
+                Console.WriteLine($"{enemy.EnemyType} greift dich an und richtet {enemyAttacks.dmg} Schaden an.");
+                Console.WriteLine($"Du hast noch {character.hp} Leben.");
+                character.block = false;
+            }
         }
     }
 }

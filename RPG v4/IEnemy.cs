@@ -11,30 +11,33 @@ namespace RPG_v4
         string EnemyType { get; }
 
 
-        int hp { get; }
+        double hp { get; }
 
 
-        int str { get; }
+        double str { get; }
 
 
-        int con { get; }
+        double con { get; }
 
 
-        int dex { get; }
+        double dex { get; }
 
 
-        int quick { get; }
+        double quick { get; }
 
 
-        int atk { get; }
+        double atk { get; }
 
 
-        int def { get; }
+        double def { get; }
 
 
-        int xpWorth { get; }
+        double xpWorth { get; }
 
 
         void SetEnemyType();
+
+
+        void SetStats();
     }
 }

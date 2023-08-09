@@ -19,15 +19,15 @@ namespace RPG_v4
 
         public void LevelUp()
         {
-            if (character.xpCurrent == character.xpTreshold)
+            if (character.xpCurrent >= character.xpTreshold)
             {
                 Console.WriteLine("Herzlichen Glückwunsch! Du bist ein Level aufgestiegen!\nDu erhählst 3 Skillpunkte zum verteilen.");
                 character.level++;
                 character.xpCurrent = 0;
-                character.xpTreshold += 125;
+                character.xpTreshold *= 2;
                 character.skillPoints += 3;
                 skillPointDestribution.Destribution();
-                character.hpMax += 50;
+                character.hpMax = Math.Round(character.hpMax + character.con * 1.25);
                 character.hp = character.hpMax;
             }
         }

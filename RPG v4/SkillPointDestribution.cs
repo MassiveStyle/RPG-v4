@@ -19,7 +19,8 @@ namespace RPG_v4
             while (character.skillPoints > 0)
             {
                 Console.WriteLine($"In was möchtest du deine Punkte investieren?\n" +
-                                  $"(1) Stärke : {character.str}, (2) Konstitution : {character.con}, (3) Geschicklichkeit : {character.dex}, (4) Schnelligkeit : {character.quick}");
+                                  $"(1) Stärke : {character.str}, (2) Konstitution : {character.con}, " +
+                                  $"(3) Geschicklichkeit : {character.dex}, (4) Schnelligkeit : {character.quick}");
                 string destributionChoice = Console.ReadLine();
 
                 switch (destributionChoice)
@@ -51,7 +52,7 @@ namespace RPG_v4
                                     {
                                         Console.WriteLine("Du erhöhst deine Stärke um 3");
                                         character.str += 3;
-                                        character.skillPoints += 3;
+                                        character.skillPoints -= 3;
                                     }
                                     break;
 

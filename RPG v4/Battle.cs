@@ -28,7 +28,8 @@ namespace RPG_v4
             }
             else
             {
-                Console.WriteLine($"{enemy.EnemyType} greift zuerst an!");            
+                Console.WriteLine($"{enemy.EnemyType} greift zuerst an!");   
+                character.turn = false;
             }
 
         }

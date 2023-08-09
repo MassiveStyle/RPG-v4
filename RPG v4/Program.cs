@@ -7,17 +7,19 @@ public class Rpg
         Character character = new Character();
         while (character.hp > 0)
         {
-            Enemy enemy = new Enemy();
+            LevelCheck levelCheck = new LevelCheck(character);
+            Enemy enemy = new Enemy(levelCheck);
+            CharacterAttacks characterAttacks = new CharacterAttacks(character, enemy);
+            EnemyAttacks enemyAttacks = new EnemyAttacks(enemy, character);
             StatScreen statScreen = new StatScreen(character);
-            BattleTurnCharacter battleTurnCharacter = new BattleTurnCharacter(character, enemy);
-            BattleTurnEnemy battleTurnEnemy = new BattleTurnEnemy(enemy, character);
-            BattlePhase battlePhase = new BattlePhase(character, enemy, battleTurnCharacter, battleTurnEnemy);
             Battle battle = new Battle(enemy, character);
             Menu menu = new Menu(battle, statScreen);
+            BattleTurnCharacter battleTurnCharacter = new BattleTurnCharacter(character, enemy, characterAttacks, statScreen, menu);
+            BattleTurnEnemy battleTurnEnemy = new BattleTurnEnemy(enemy, character, enemyAttacks);
+            BattlePhase battlePhase = new BattlePhase(character, enemy, battleTurnCharacter, battleTurnEnemy);
             DeadOrAlive deadOrAlive = new DeadOrAlive(character, enemy);
             SkillPointDestribution skillPointDestribution = new SkillPointDestribution(character);
             CanLevelUp canLevelUp = new CanLevelUp(character, skillPointDestribution);
-
 
             menu.MainMenu();
             battlePhase.BattleRounds();

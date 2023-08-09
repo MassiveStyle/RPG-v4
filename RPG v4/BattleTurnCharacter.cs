@@ -9,18 +9,24 @@ namespace RPG_v4
     public class BattleTurnCharacter
     {
         private Character character;
+        private CharacterAttacks characterAttacks;
         private Enemy enemy;
-        string battleChoice = "";
+        private StatScreen statScreen;
+        private Menu menu;
+        string battleChoice = string.Empty;
 
-        public BattleTurnCharacter(Character character, Enemy enemy)
+        public BattleTurnCharacter(Character character, Enemy enemy, CharacterAttacks characterAttacks, StatScreen statScreen, Menu menu)
         {
             this.character = character;
             this.enemy = enemy;
+            this.characterAttacks = characterAttacks;
+            this.statScreen = statScreen;
+            this.menu = menu;
         }
 
         public void TurnCharacter()
         {
-            while ((battleChoice != "1") && (battleChoice != "5"))
+            do
             {
                 Console.WriteLine("Was möchtest du tun? 1. Angreifen, 2. Fähigkeit benutzen, 3. Blocken, 4. Statuswerte ansehen, 5. Flüchten");
                 battleChoice = Console.ReadLine();
@@ -29,34 +35,55 @@ namespace RPG_v4
                 {
                     case "1":
                         {
-                            Console.WriteLine($"Du greifst {enemy.EnemyType} an und richtest {character.atk} Schaden an!\n");
-                            enemy.hp = enemy.hp - character.atk;
-                            Console.WriteLine($"{enemy.EnemyType} hat noch {enemy.hp} Leben.");
+                            characterAttacks.StandardAttack();
+                            Console.WriteLine($"Du greifst {enemy.EnemyType} an und richtest {characterAttacks.dmg} Schaden an!\n");
+                            if (enemy.hp > 0)
+                            {
+                                Console.WriteLine($"{enemy.EnemyType} hat noch {enemy.hp} Leben.");
+                            }
+                            else
+                            {
+                                Console.WriteLine($"Du hast {enemy.EnemyType} getötet!");
+                            }
+                            
 
                         }
                         break;
 
                     case "2":
                         {
-                            Console.WriteLine("Du benutzt eine fähigkeit");
+                            characterAttacks.Skill1();
+                            Console.WriteLine($"Du greifst {enemy.EnemyType} an und richtest {characterAttacks.dmg} Schaden an!\n");
+                            if (enemy.hp > 0)
+                            {
+                                Console.WriteLine($"{enemy.EnemyType} hat noch {enemy.hp} Leben.");
+                            }
+                            else
+                            {
+                                Console.WriteLine($"Du hast {enemy.EnemyType} getötet!");
+                            }
+
                         }
                         break;
 
                     case "3":
                         {
-                            Console.WriteLine("Stats ansehen");
+                            Console.WriteLine($"Du blockst denn nächsten Angriff und erleidest {character.def} weniger Schaden!");
+                            character.block = true;
                         }
                         break;
 
                     case "4":
                         {
-                            Console.WriteLine("Blocken");
+
+                            statScreen.StatInfoScreen();
                         }
                         break;
 
                     case "5":
                         {
-                            Console.WriteLine("Flüchten");
+                            Console.WriteLine("Du Flüchtest wie ein feigling zurück in die Stadt...");
+                            menu.MainMenu();
                         }
                         break;
 
@@ -68,8 +95,8 @@ namespace RPG_v4
                         break;
                 }
 
-            }
-            battleChoice = "";
+            } while (battleChoice == "4");
+            battleChoice = string.Empty;
         }
     }
 }

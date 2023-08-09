@@ -8,36 +8,42 @@ namespace RPG_v4
 {
     public class Enemy : IEnemy
     {
+        private LevelCheck levelCheck;
+
+
         public string EnemyType { get; set; }
 
 
-        public int hp { get; set; }
+        public double hp { get; set; }
 
 
-        public int str { get; set; }
+        public double str { get; set; }
 
 
-        public int con { get; set; }
+        public double con { get; set; }
 
 
-        public int dex { get; set; }
+        public double dex { get; set; }
 
 
-        public int quick { get; set; }
+        public double quick { get; set; }
 
 
-        public int atk { get; set; }
+        public double atk { get; set; }
 
 
-        public int def { get; set; }
+        public double def { get; set; }
 
 
-        public int xpWorth { get; set; }
+        public double xpWorth { get; set; }
 
-        public Enemy()
+        public Enemy(LevelCheck levelCheck)
         {
+            this.levelCheck = levelCheck;
+            levelCheck.Check();
             SetEnemyType();
             SetStats();
+            
         }
         public void SetEnemyType()
         {
@@ -57,14 +63,14 @@ namespace RPG_v4
         public void SetStats()
         {
             Random random = new Random();
-            hp = random.Next(1, 100);
-            str = random.Next(1, 10);
-            con = random.Next(1, 10);
-            dex = random.Next(1, 10);
-            quick = random.Next(1, 10);
-            atk = random.Next(1, 10);
-            def = random.Next(1, 10);
-            xpWorth = 200;
+            hp = Math.Round(random.Next(50, 101) * levelCheck.modifier);
+            str = Math.Round(random.Next(1, 11) * levelCheck.modifier);
+            con = Math.Round(random.Next(1, 11) * levelCheck.modifier);
+            dex = Math.Round(random.Next(1, 11) * levelCheck.modifier);
+            quick = Math.Round(random.Next(1, 11) * levelCheck.modifier);
+            atk = Math.Round(random.Next(1, 11) * levelCheck.modifier);
+            def = Math.Round(random.Next(1, 11) * levelCheck.modifier);
+            xpWorth = Math.Round(random.Next(50, 201) * levelCheck.modifier);
         }
     }
 }
