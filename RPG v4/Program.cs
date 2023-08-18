@@ -18,7 +18,7 @@ public class Rpg
             BattleTurnEnemy battleTurnEnemy = new BattleTurnEnemy(enemy, character, enemyAttacks);
             BattlePhase battlePhase = new BattlePhase(character, enemy, battleTurnCharacter, battleTurnEnemy);
             DeadOrAlive deadOrAlive = new DeadOrAlive(character, enemy);
-            SkillPointDestribution skillPointDestribution = new SkillPointDestribution(character);
+            SkillPointDistribution skillPointDestribution = new SkillPointDistribution(character);
             CanLevelUp canLevelUp = new CanLevelUp(character, skillPointDestribution);
 
             menu.MainMenu();

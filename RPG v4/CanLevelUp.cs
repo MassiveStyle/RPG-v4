@@ -9,9 +9,9 @@ namespace RPG_v4
     public class CanLevelUp
     {
         private Character character;
-        private SkillPointDestribution skillPointDestribution;
+        private SkillPointDistribution skillPointDestribution;
 
-        public CanLevelUp(Character character, SkillPointDestribution skillPointDestribution)
+        public CanLevelUp(Character character, SkillPointDistribution skillPointDestribution)
         {
             this.character = character;
             this.skillPointDestribution = skillPointDestribution;
@@ -26,7 +26,7 @@ namespace RPG_v4
                 character.xpCurrent = 0;
                 character.xpTreshold *= 2;
                 character.skillPoints += 3;
-                skillPointDestribution.Destribution();
+                skillPointDestribution.TestDistribution();
                 character.hpMax = Math.Round(character.hpMax + character.con * 1.25);
                 character.hp = character.hpMax;
             }

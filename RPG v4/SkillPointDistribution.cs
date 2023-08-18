@@ -6,14 +6,52 @@ using System.Threading.Tasks;
 
 namespace RPG_v4
 {
-    public class SkillPointDestribution
+    public class SkillPointDistribution
     {
         private Character character;
 
-        public SkillPointDestribution(Character character)
-        { this.character = character; }
+        public SkillPointDistribution(Character character)
+        {
+            this.character = character;
+        }
 
+        public void TestDistribution()
+        {
+            while (character.skillPoints > 0)
+            {
+                Console.WriteLine($"In was möchtest du deine Punkte investieren?\n" +
+                                  $"(1) Stärke : {character.str}, (2) Konstitution : {character.con}, " +
+                                  $"(3) Geschicklichkeit : {character.dex}, (4) Schnelligkeit : {character.quick}");
+                int destributionChoice = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine("Wieviele Punkte möchtest du investieren? ");
+                int destributionAmmount = Convert.ToInt32(Console.ReadLine());
 
+                switch (destributionChoice, destributionAmmount)
+                {
+                    case (1, 1):
+                        {
+                            Console.WriteLine("Stärke +1");
+                            break;
+                        }
+                    case (1, 2):
+                        {
+                            Console.WriteLine("Stärke +2");
+                            break;
+                        }
+                    case (1, 3):
+                        {
+                            Console.WriteLine("Stärke +3");
+                            character.skillPoints -= 3;
+                            break;
+                        }
+                    default:
+                        {
+                            Console.WriteLine("Ungültige zahl");
+                            break;
+                        }
+                }
+            }
+        }
         public void Destribution()
         {
             while (character.skillPoints > 0)

@@ -21,7 +21,7 @@ namespace RPG_v4
         public void MainMenu()
         {
 
-            while ((menuChoice != "1") && (menuChoice != "3"))
+            while (menuChoice != "1" && menuChoice != "3")
             {
                 Console.WriteLine("1. Kämpfen, 2. Statuswerte ansehen, 3. Beenden");
                 menuChoice = Console.ReadLine();
